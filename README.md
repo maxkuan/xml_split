@@ -2,6 +2,14 @@
 
 ## USAGE
 
+| Parameter     | Value                 |
+| ------------- | --------------------- |
+| -f, —filename | Source file           |
+| -o, —output   | Folder to output file |
+| -c, —count    | Null                  |
+
+
+
 ### Split file to folder
 
 ```shell
