@@ -1,6 +1,8 @@
 # SPLIT PATENT IN XML
 
-## USAGE
+## USAGE 
+
+### Mac OS, Linux (bash script)
 
 | Parameter     | Value                 |
 | ------------- | --------------------- |
@@ -8,20 +10,40 @@
 | -o, —output   | Folder to output file |
 | -c, —count    | Null                  |
 
-
-
-### Split file to folder
+#### Split file to folder
 
 ```shell
 sh xml_split.sh -f filename -o output_folder [-c]
 ```
 
-### Count patents in file
+#### Count patents in file
 
 ```shell
 sh xml_split.sh -f filename -c
 ```
 
-### Search patent in file
+#### Search patent in file
 
 `coming up...`
+
+***
+
+### Windows (Powershell script)
+
+| Parameter  | Value                 | Export |
+| ---------- | --------------------- | ------ |
+| --filename | Source file           |        |
+| --output   | Folder to output file |        |
+
+#### Split file to folder
+
+```powershell
+.\xmlsplit.ps1 -filename sample.xml -o output
+```
+
+#### Count patents in file
+
+```
+.\xmlsplit.ps1 -filename sample.xml
+```
+
