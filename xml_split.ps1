@@ -1,7 +1,7 @@
 #initialize parameters
-$xml_path = "D:\Johnson\Project\maxkuan\Johnson\xml_split\xml_split\sample.xml"
+$xml_path = "./sample.xml"
 $target_patent = "D0848707"
-$output_file_path = "D:\Johnson\Project\maxkuan\Johnson\xml_split\xml_split\result.xml"
+$output_file_path = "./result.xml"
 $end_element = "</us-patent-grant>"
 
 <#
