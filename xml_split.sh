@@ -3,9 +3,9 @@
 start='^<us-patent-grant'
 end='^</us-patent-grant>$'
 result_arr=()
-
 count=0
 
+#get parameters
 POSITIONAL=()
 while [[ $# -gt 0 ]]
     do
@@ -45,7 +45,6 @@ then
 else
     exec < $FILENAME
 fi
-
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
     ((count++))
