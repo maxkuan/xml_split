@@ -1,38 +1,34 @@
+param (
+    [Parameter(Mandatory=$true)][string]$filename,
+    [string]$search
+)
 #initialize parameters
-$xml_path = "./sample.xml"
-$target_patent = "D0848707"
-$output_file_path = "./result.xml"
-$end_element = "</us-patent-grant>"
+$start='^<us-patent-grant'
+$end='^</us-patent-grant>$'
+$doc = "^<doc-number>"
+$target_doc = "^<doc-number>$search</doc-number>$"
+Write-Output $target_doc
+$output_content = ""
+$write_flag = 0
 
-<#
-$split_element = "</us-patent-grant>"
-
-#get xml file.
-$xml = gc -path $xml_path
-#split the target patent
-$split = [regex]::Split($xml, $split_element) | Select-String $target_patent
-#output result
-$split.ToString() + $split_element | Out-File -FilePath $output_file_path
-#>
-
-$stream_reader = New-Object System.IO.StreamReader($xml_path)
-$output_content = $stream_reader.ReadLine() + "`n"
-$output_content = $output_content + $stream_reader.ReadLine() + "`n"
-
+$stream_reader = New-Object System.IO.StreamReader($filename)
 while (($eachline = $stream_reader.ReadLine()) -ne $null) {
-	if ($eachline.contains($target_patent)) {
-		$output_content = $output_content + $eachline + "`n"
-		
-		while (($content = $stream_reader.ReadLine()) -ne $null) {
-			$output_content = $output_content + $content + "`n"
-			
-			if ($content.contains($end_element)) {
-				$output_content | Out-File -FilePath $output_file_path
-				break
-			}
-		}
-		break
+	if ($eachline -match $start) {
+		# Write-Output $count $eachline
+        $write_flag = 1
 	}
+    if($eachline -match $doc) {
+        if(!$eachline -match $target_doc) {
+            $write_flag = 0
+        }
+    }
+    if($write_flag) {
+        $output_content += $eachline +"`n"
+    }
+    if ($eachline -match $end -and $write_flag) { 
+        $output_content | Out-File -FilePath "./$($search).xml"
+        break 
+    }
+    
 }
 $stream_reader.Dispose()
-

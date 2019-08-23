@@ -32,8 +32,8 @@ sh xml_split.sh -f filename -c
 
 | Parameter  | Value                 | Export |
 | ---------- | --------------------- | ------ |
-| --filename | Source file           |        |
-| --output   | Folder to output file |        |
+| -filename  | Source file           |        |
+| -output    | Folder to output file |        |
 
 #### Split file to folder
 
@@ -43,7 +43,12 @@ sh xml_split.sh -f filename -c
 
 #### Count patents in file
 
-```
+```powershell
 .\xmlsplit.ps1 -filename sample.xml
 ```
 
+#### Search patent in file
+
+```powershell
+.\xmlsearch.ps1 -filename sample.xml -search D0848705
+```
